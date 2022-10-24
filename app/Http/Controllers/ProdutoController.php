@@ -62,8 +62,11 @@ class ProdutoController extends Controller
 
         $file = $request->file('file');
         $filename = strtotime('now') . $file->getClientOriginalName();
-        $file->store($filename, 's3');
-        $produto->url = $filename;
+
+        $path =  $file->storeAs("produtos", $filename, 's3');
+        $url = "https://laravel-ava.s3.sa-east-1.amazonaws.com/" . $path;
+        $produto->url = $url;
+        //$produto->url = $filename;
         //fotos
         /*$nomeantigo = strtotime('now') . $request->file('file')->getClientOriginalName();
         $url = $request->file('file')->storeAs('public/fotos', $nomeantigo);
