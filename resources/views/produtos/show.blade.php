@@ -8,7 +8,7 @@
 <div class="mostra rounded-md bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 py-5">
     <table class="w-full table-fixed">
         <div class="imagem">
-            <img class="img" src="{{@asset($produto->url)}}">
+            <img class="img" src="{{$produto->url}}">
         </div>
         <thead>
             <tr>

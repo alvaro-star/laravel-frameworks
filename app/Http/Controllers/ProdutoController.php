@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use File;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
 
 class ProdutoController extends Controller
 {
@@ -66,6 +68,7 @@ class ProdutoController extends Controller
         $path =  $file->storeAs("produtos", $filename, 's3');
         $url = "https://laravel-ava.s3.sa-east-1.amazonaws.com/" . $path;
         $produto->url = $url;
+
         //$produto->url = $filename;
         //fotos
         /*$nomeantigo = strtotime('now') . $request->file('file')->getClientOriginalName();
@@ -128,14 +131,19 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
+        //$s3client = new S3Client(['region' => env('AWS_DEFAULT_REGION'), 'version' => 'latest']);
         $url = $produto->url;
-        $url = explode("storage", $url);
-
-        if (Storage::delete("public" . $url[1])) {
+        //s3://laravel-ava/produtos/
+        $url = explode("https://laravel-ava.s3.sa-east-1.amazonaws.com/", $url);
+        Storage::disk('s3')->delete($url[1]);
+        $produto->delete();
+        return redirect('/produtos');
+        /*if (Storage::disk('s3')->delete($url[1])) {
             $produto->delete();
             return redirect('/produtos');
         } else {
             echo "Erro na delecao do arquivo";
         }
+        */
     }
 }

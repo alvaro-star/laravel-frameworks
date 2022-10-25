@@ -40,7 +40,7 @@
         </nav>
 
     </div>
-    <div class="flex justify-center overflow-hidden my-8">
+    <div class="flex justify-center overflow-hidden my-8 bg-slate-100">
     @section('titulos')
     @show
     </div>
