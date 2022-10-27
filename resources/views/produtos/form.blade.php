@@ -67,7 +67,7 @@
 
 @section('css')
 <style>
-    .formulario{
+    .formulario {
         width: 300px;
     }
 </style>

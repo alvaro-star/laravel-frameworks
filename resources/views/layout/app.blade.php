@@ -8,14 +8,17 @@
     <link rel="icon" src="https://cdn-icons-png.flaticon.com/512/2922/2922830.png">
     <title>Vargas Loja</title>
 
+    
     @section('estilo')
     @show
-
+    
     @section('css')
     @show
-
+    
     @section('sidebar')
     @show
+    
+
 
     <div class="header-2">
 
@@ -40,6 +43,10 @@
         </nav>
 
     </div>
+
+    @section('alerta')
+    @show
+    
     <div class="flex justify-center overflow-hidden my-8 bg-slate-100">
     @section('titulos')
     @show

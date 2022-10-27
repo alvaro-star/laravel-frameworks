@@ -67,9 +67,6 @@ class CategoriaController extends Controller
                 $i++;
             }
         }
-        foreach ($produtos as $produto) {
-            $produto->categorias_id = $categoria;
-        }
 
         //var_dump($produtos);
         return view('produtos.index', ['produtos' => $produtosCategoria, 'categoria' => $categoria]);
@@ -111,7 +108,25 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        $categoria->delete();
-        return redirect('/categorias');
+        $produtos = Produto::all();
+        $i = 0;
+        $isCheio = false;
+        $produtosCategoria = [];
+        foreach ($produtos as $produto) {
+            if ($produto->categorias_id == $categoria->id) {
+                $produto->categorias_id = $categoria;
+                $produtosCategoria[$i] = $produto;
+                $isCheio = true;
+                $i++;
+            }
+        }
+
+        if ($isCheio) {
+            $alerta = "Existem Produtos desta Categoria";
+            return view('produtos.index', ['produtos' => $produtosCategoria, 'categoria' => $categoria, 'alerta' => $alerta]);
+        } else {
+            $categoria->delete();
+            return redirect('/categorias');
+        }
     }
 }

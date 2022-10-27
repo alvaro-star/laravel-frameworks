@@ -1,11 +1,20 @@
 @extends('layout.app')
 
+
 @section('estilo')
 <script src="https://cdn.tailwindcss.com"></script>
 @endsection
+@section('alerta')
+    @if(isset($alerta))
+        <div class = "alerta rounded bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white text-center mx-12 py-2.5">
+            {{$alerta}}
+        </div>
+    @endif
+
+@endsection
 
 @section('titulos')
-<h1 class="px-5 py-3 my-1  rounded">{{(!isset($categoria) ? 'Meus Produtos': $categoria->nome)}}</h1>
+<h1 class="px-5 py-3 my-1 rounded">{{(!isset($categoria) ? 'Meus Produtos': 'Categoria: '.$categoria->nome)}}</h1>
 @if(!isset($categoria))
 @else
 <a class="my-2 mx-2 align-items-center text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded text-sm w-1/2 sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800" href="{{route('categorias.edit', ['categoria' => $categoria])}}"> Editar</a>
@@ -44,6 +53,11 @@
 @section('css')
 <style>
     .produtos{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .alerta{
         margin-left: 5%;
         margin-right: 5%;
     }
