@@ -8,19 +8,17 @@
     <link rel="icon" src="https://cdn-icons-png.flaticon.com/512/2922/2922830.png">
     <title>Vargas Loja</title>
 
-    
+
     @section('estilo')
     @show
-    
+
     @section('css')
     @show
-    
+
     @section('sidebar')
     @show
-    
 
-
-    <div class="header-2">
+    <div class="header-2 fixed left-0 right-0 top-0">
 
         <nav class="bg-white py-2 md:py-4">
             <div class="container px-4 mx-auto md:flex md:items-center">
@@ -44,17 +42,18 @@
 
     </div>
 
-    @section('alerta')
-    @show
-    
-    <div class="flex justify-center overflow-hidden my-8 bg-slate-100">
-    @section('titulos')
-    @show
-    </div>
-    <div class="flex justify-center overflow-hidden my-8">
-        @yield('content')
-    </div>
+    <div class="corpo right-0 left-0 pt-7 md:pt-10">
+        @section('alerta')
+        @show
 
+        <div class="flex justify-center overflow-hidden my-8 bg-slate-100">
+            @section('titulos')
+            @show
+        </div>
+        <div class="flex justify-center overflow-hidden my-8">
+            @yield('content')
+        </div>
+    </div>
 
     <script src="/js/meuTopo.js"></script>
 

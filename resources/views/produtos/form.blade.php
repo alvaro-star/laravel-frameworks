@@ -7,7 +7,7 @@
 @section('content')
 
 
-<form action="{{(!isset($produto)) ? '/produtos' : route('produtos.update', ['produto' => $produto])}}" method="POST" enctype="multipart/form-data" class="rounded-md text-white mt-1 px-5 py-3 formulario bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900">
+<form action="{{(!isset($produto)) ? '/produtos' : route('produtos.update', ['produto' => $produto])}}" method="POST" enctype="multipart/form-data" class="rounded-md text-white mt-1 px-5 py-3 formulario bg-gradient-to-r from-blue-500 to-purple-600">
     @if(!isset($produto))
 
     @else

@@ -7,7 +7,7 @@
 @section('content')
 
 
-<form action="{{(!isset($categoria)) ? '/categorias' : route('categorias.update', ['categoria' => $categoria])}}" method="POST" class="rounded-md text-white mt-7 px-5 py-3 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900">
+<form action="{{(!isset($categoria)) ? '/categorias' : route('categorias.update', ['categoria' => $categoria])}}" method="POST" class="rounded-md text-white mt-7 px-5 py-3 bg-gradient-to-r from-blue-500 to-purple-600">
     @if(!isset($categoria))
 
     @else
