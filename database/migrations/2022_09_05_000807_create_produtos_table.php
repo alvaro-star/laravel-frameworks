@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('nome')->nullable(false);
             $table->string('url')->nullable(false);
             $table->double('preco')->nullable(false);
-            $table->string('marca')->nullable(false);
+            $table->double('quantidade')->nullable(true);
+            $table->string('marca')->nullable(true);
             $table->string('descricao')->nullable(false);
-            $table->double('desconto')->nullable(false);
+            $table->boolean('disponivel')->nullable(false);
             $table->timestamps();
         });
     }

@@ -55,26 +55,27 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $produto = new Produto();
+
         $produto->nome = $request->nome;
+        $produto->quantidade = $request->quantidade;
         $produto->preco = $request->preco;
         $produto->marca = $request->marca;
-        $produto->desconto = $request->desconto;
+        $produto->disponivel = $request->disponivel;
         $produto->categorias_id = $request->categoria;
         $produto->descricao = $request->descricao;
 
         $file = $request->file('file');
         $filename = strtotime('now') . $file->getClientOriginalName();
 
-        $path =  $file->storeAs("produtos", $filename, 's3');
+        /*$path =  $file->storeAs("produtos", $filename, 's3');
         $url = "https://laravel-ava.s3.sa-east-1.amazonaws.com/" . $path;
-        $produto->url = $url;
+        $produto->url = $url;*/
 
         //$produto->url = $filename;
         //fotos
-        /*$nomeantigo = strtotime('now') . $request->file('file')->getClientOriginalName();
+        $nomeantigo = strtotime('now') . $request->file('file')->getClientOriginalName();
         $url = $request->file('file')->storeAs('public/fotos', $nomeantigo);
-        $url =  explode("public/", $url);
-        $produto->url = "storage/" . $url[1];*/
+        $produto->url = str_replace("public/", "storage/", $url);
 
         $produto->save();
 
